@@ -10,6 +10,4 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  
-}
+
