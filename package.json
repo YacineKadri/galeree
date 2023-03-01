@@ -1,0 +1,23 @@
+{
+  "name": "galeree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YacineKadri/galeree.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YacineKadri/galeree/issues"
+  },
+  "homepage": "https://github.com/YacineKadri/galeree#readme",
+  "dependencies": {
+    "@tanstack/react-query": "^4.24.10"
+  }
+}
