@@ -1,32 +1,35 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Dashboard from "./Components/Discov/Discover.tsx";
+import Discover from "./Components/Discov/Discover.tsx";
 import {
   ClerkProvider,
   SignedIn,
   SignedOut,
   RedirectToSignIn,
   UserButton,
-  useUser
+  useUser,
+  SignInButton,
 } from "@clerk/clerk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import PostForm from "./Components/PostForm/PostForm.tsx";
+import NavBar from "./Components/NavBar/NavBar.tsx";
 const clerkPublicApi =
   "pk_test_bG92aW5nLW1hbW1hbC03LmNsZXJrLmFjY291bnRzLmRldiQ";
 const queryClient = new QueryClient();
 function App() {
   return (
     <>
-      <ClerkProvider publishableKey={clerkPublicApi}>
-        <SignedIn>
-          <QueryClientProvider client={queryClient} contextSharing={true}>
-            <Dashboard />
+      <QueryClientProvider client={queryClient}>
+        <ClerkProvider publishableKey={clerkPublicApi}>
+          <SignedIn>
             <Hello />
-          </QueryClientProvider>
-        </SignedIn>
-        <SignedOut>
-          <RedirectToSignIn />
-        </SignedOut>
-      </ClerkProvider>
+            <PostForm />
+          </SignedIn>
+          <SignedOut>
+           <SignInButton />
+            <Discover />
+          </SignedOut>
+        </ClerkProvider>
+      </QueryClientProvider>
     </>
   );
 }

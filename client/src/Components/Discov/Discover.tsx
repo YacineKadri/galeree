@@ -24,7 +24,7 @@ function Discover() {
   return (
     <>
    
-    <img src={data.urls.regular} alt="" />
+    <img src={data.urls.small} alt="" />
     </>
   );
 }

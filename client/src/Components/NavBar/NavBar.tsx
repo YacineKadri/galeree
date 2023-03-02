@@ -1,12 +1,19 @@
-import React, { FC } from 'react';
+import { RedirectToSignIn } from "@clerk/clerk-react";
+import React from "react";
 
+function NavBar() {
+  return (
+    <>
+      <button
+        onClick={() => {
+          console.log("test");
+          return <RedirectToSignIn />;
+        }}
+      >
+        Sign In
+      </button>
+    </>
+  );
+}
 
-function Dashboard(){
-    return (
-        <>
-            <h1>Welcome </h1>
-        </>
-    );
-};
-
-export default Dashboard;
+export default NavBar;
