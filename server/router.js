@@ -3,6 +3,8 @@ const router = Express.Router();
 const postController = require("./controllers/postController");
 
 const multer = require("multer");
+
+//Set up multer middleware
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads/");
