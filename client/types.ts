@@ -1,8 +1,7 @@
 export type Pics =  {
-    id: number,
-    author: string,
-    width: number,
-    height: number,
-    url: string,
-    download_url: string
+    id: number;
+    description: string;
+    picture: string;
+    author: string;
+    
 }

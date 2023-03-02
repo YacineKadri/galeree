@@ -10,7 +10,7 @@ import {
   SignInButton,
 } from "@clerk/clerk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import PostForm from "./Components/PostForm/PostForm.tsx";
+import PostForm from "./Components/PostForm/PostForm";
 import NavBar from "./Components/NavBar/NavBar.tsx";
 const clerkPublicApi =
   "pk_test_bG92aW5nLW1hbW1hbC03LmNsZXJrLmFjY291bnRzLmRldiQ";
@@ -25,7 +25,7 @@ function App() {
             <PostForm />
           </SignedIn>
           <SignedOut>
-           <SignInButton />
+            <SignInButton />
             <Discover />
           </SignedOut>
         </ClerkProvider>

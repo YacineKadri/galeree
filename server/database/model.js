@@ -1,4 +1,4 @@
-const prisma = require('./prisma')
+
 
 // Path: server\database\prisma.js
 // Compare this snippet from server\index.js:
