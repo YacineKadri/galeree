@@ -1,18 +1,14 @@
-import { RedirectToSignIn } from "@clerk/clerk-react";
+import './NavBar.css';
 import React from "react";
+import { SignInButton } from '@clerk/clerk-react';
 
 function NavBar() {
   return (
-    <>
-      <button
-        onClick={() => {
-          console.log("test");
-          return <RedirectToSignIn />;
-        }}
-      >
-        Sign In
-      </button>
-    </>
+    <div className="container-fluid">
+      <SignInButton />
+      <h1 className='galeree'>Galeree</h1>
+        </div>
+       
   );
 }
 

@@ -25,7 +25,9 @@ function App() {
             <PostForm />
           </SignedIn>
           <SignedOut>
+            <NavBar>
             <SignInButton />
+            </NavBar>
             <Discover />
           </SignedOut>
         </ClerkProvider>

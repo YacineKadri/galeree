@@ -1,12 +1,17 @@
-import React from 'react';
+import React from "react";
+import "./PostCard.css";
 
 
-function PostCard(){
-    return (
-     <form action="" method="post">
-        <input type="image" src="" alt="" />
-     </form>
-    );
-};
+
+function PostCard({ post }) {
+
+  console.log(post)
+  return (
+    <div className="postcard">
+      <img src={post.picture} alt="" />
+      <h2>{post.description}</h2>
+    </div>
+  );
+}
 
 export default PostCard;

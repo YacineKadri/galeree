@@ -1,31 +1,32 @@
 import React from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Pics } from "../../../types";
-
-
-function fetchRandomPics() {
-    return fetch("https://api.unsplash.com/photos/random", {   headers: {
-        "Content-Type": "application/json",
-        'Authorization': 'Client-ID mIvqyGlZEQE3iJS0c8sVucET3KL8I3R9vyDVxAusjIQ'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },}).then((res) => {
-        console.log(res);
-        return res.json();
-      });
-    }
-
+import { useQuery } from "@tanstack/react-query";
+import PostCard from "../PostCard/PostCard.tsx";
+import "./Discover.css";
 
 function Discover() {
-  const { isLoading, error, data, isFetching}= useQuery(["pics"], fetchRandomPics);
+  function fetchRandomPics() {
+    return fetch("http://localhost:4000/create", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
+  }
+  const { isLoading, error, data } = useQuery(["pics"], fetchRandomPics);
+  console.log(data);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error</div>;
+  if (error) {
+    return <div>Error</div>;
+  }
 
   return (
-    <>
-   
-    <img src={data.urls.small} alt="" />
-    </>
+    <div className="discover-feed">
+      <PostCard
+        post={{ description: data[0].description, picture: data[0].picture }}
+      />
+    </div>
   );
 }
 
