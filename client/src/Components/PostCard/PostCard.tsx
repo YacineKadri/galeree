@@ -9,7 +9,6 @@ function PostCard({ post }) {
   return (
     <div className="postcard">
       <img src={post.picture} alt="" />
-      <h2>{post.description}</h2>
     </div>
   );
 }

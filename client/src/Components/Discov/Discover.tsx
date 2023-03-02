@@ -22,11 +22,14 @@ function Discover() {
   }
 
   return (
-    <div className="discover-feed">
-      <PostCard
-        post={{ description: data[0].description, picture: data[0].picture }}
-      />
+    <div className="discover">
+    {data.map((post) => ( 
+      <PostCard key={post.id} post={post} />
+    ))}
     </div>
+   
+   
+    
   );
 }
 

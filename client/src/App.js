@@ -44,7 +44,7 @@ function Hello() {
     <div className="App-header">
       {/* Mount the UserButton component */}
       <UserButton />
-      {user ? <h1>Hello, {user.username}!</h1> : null}
+      {user ? <h1>Hello, {user.username}! Your id is {user.id}</h1> : null}
     </div>
   );
 }

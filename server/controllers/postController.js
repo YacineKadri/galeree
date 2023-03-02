@@ -2,6 +2,7 @@ const postController = {};
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const { uploadFileToBucket, getSignedUrl } = require("../storage");
+const getUserId = require("../clerkManager");
 
 
 postController.postPosts = async (req, res) => {
