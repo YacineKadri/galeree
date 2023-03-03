@@ -12,7 +12,7 @@ function Discover() {
     }).then((res) => res.json());
   }
   const { isLoading, error, data } = useQuery(["pics"], fetchRandomPics);
-  console.log(data);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }

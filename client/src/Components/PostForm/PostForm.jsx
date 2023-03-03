@@ -13,7 +13,6 @@ function PostForm(props) {
     formData.append("description", event.target[1].value);
     formData.append("userId", userId)
     console.log("submit");
-    console.log(formData);
     fetch("http://localhost:4000/create", {
       method: "POST",
       // headers: { "Content-Type": "multipart/form-data" },

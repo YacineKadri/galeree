@@ -128,4 +128,26 @@ postController.postLikes = async (req, res) => {
   }
 };
 
+postController.editPost = async (req, res) => {
+  console.log('editPost route hit');
+  const { description } = req.body;
+  const postId = Number(req.params.postId);
+
+  try {
+    const updatedPost = await prisma.imagePost.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        description: description,
+      },
+    });
+    console.log(updatedPost);
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Post not updated" });
+  }
+};
+
 module.exports = postController;
