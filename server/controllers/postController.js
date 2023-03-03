@@ -40,7 +40,7 @@ postController.getPosts = async (req, res) => {
       orderBy: {
         likes: {
           _count: "desc",
-        }
+        },
       },
     });
     res.status(200).json(posts);
@@ -107,6 +107,9 @@ postController.getComments = async (req, res) => {
 postController.postLikes = async (req, res) => {
   const { userId, postId } = req.body;
   try {
+    if (userId === null || !userId) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
     const newLike = await prisma.like.create({
       data: {
         userId: userId,
@@ -117,8 +120,8 @@ postController.postLikes = async (req, res) => {
         },
       },
     });
-    console.log(newLike)
-    res.status(200).json(newLike);
+    console.log(newLike);
+    return res.status(200).json(newLike);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Like not created" });
