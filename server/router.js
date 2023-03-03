@@ -23,4 +23,10 @@ router.post(
 
 router.get("/create", postController.getPosts)
 
+router.get("/create/:userId", postController.getUserPosts)
+
+router.post("/comments/:postId", postController.postComments)
+router.get("/comments/:postId", postController.getComments)
+router.post("/like/:postId", postController.postLikes)
+
 module.exports = router;

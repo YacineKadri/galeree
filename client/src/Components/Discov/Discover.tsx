@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import PostCard from "../PostCard/PostCard.tsx";
+import PostCard from "../PostCard/PostCard.jsx";
 import "./Discover.css";
 
 function Discover() {
@@ -24,7 +24,7 @@ function Discover() {
   return (
     <div className="discover">
     {data.map((post) => ( 
-      <PostCard key={post.id} post={post} />
+      <PostCard key={post.postId} post={post} />
     ))}
     </div>
    

@@ -11,6 +11,7 @@ function PostForm(props) {
     const formData = new FormData();
     formData.append("picture", event.target[0].files[0]);
     formData.append("description", event.target[1].value);
+    formData.append("userId", userId)
     console.log("submit");
     console.log(formData);
     fetch("http://localhost:4000/create", {

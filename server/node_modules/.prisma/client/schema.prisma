@@ -13,8 +13,10 @@ model ImagePost {
   id        Int      @id @default(autoincrement())
   picture   String
   description String
+  userId    String   @default("")
   createdAt DateTime @default(now())
   comments  Comment[]
+  likes     Like[]
 }
 
 model Comment {
@@ -22,6 +24,13 @@ model Comment {
   author    String
   message   String
   createdAt DateTime @default(now())
+  imagePost ImagePost @relation(fields: [postId], references: [id])
+  postId    Int
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    String
   imagePost ImagePost @relation(fields: [postId], references: [id])
   postId    Int
 }
