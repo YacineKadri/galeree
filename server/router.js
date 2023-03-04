@@ -29,5 +29,6 @@ router.post("/comments/:postId", postController.postComments)
 router.get("/comments/:postId", postController.getComments)
 router.post("/like/:postId", postController.postLikes)
 router.put("/edit/:postId", postController.editPost)
+router.delete("/delete/:postId", postController.deletePost)
 
 module.exports = router;

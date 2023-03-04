@@ -24,14 +24,14 @@ model Comment {
   author    String
   message   String
   createdAt DateTime @default(now())
-  imagePost ImagePost @relation(fields: [postId], references: [id])
+  imagePost ImagePost @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    Int
 }
 
 model Like {
   id        Int      @id @default(autoincrement())
   userId    String
-  imagePost ImagePost @relation(fields: [postId], references: [id])
+  imagePost ImagePost @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    Int
 }
 

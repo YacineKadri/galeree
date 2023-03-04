@@ -150,4 +150,35 @@ postController.editPost = async (req, res) => {
   }
 };
 
+postController.deletePost = async (req, res) => {
+  const postId = Number(req.params.postId);
+
+  try {
+    await prisma.$transaction([
+      prisma.comment.deleteMany({
+        where: {
+          postId: postId,
+        },
+      }),
+      prisma.like.deleteMany({
+        where: {
+          postId: postId,
+        },
+      }),
+      prisma.imagePost.delete({
+        where: {
+          id: postId,
+        },
+      }),
+    ]);
+
+    res.status(200).json({ message: "Post deleted" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Post not deleted" });
+  }
+};
+
+
+
 module.exports = postController;

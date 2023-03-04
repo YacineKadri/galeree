@@ -4,7 +4,6 @@ import { useAuth, useUser } from "@clerk/clerk-react";
 import CommentSection from "../CommentSection/CommentSection";
 import { useState, useEffect } from "react";
 
-
 function PostCard({ post }) {
   const { userId } = useAuth();
   function useGetUserName() {
@@ -17,6 +16,7 @@ function PostCard({ post }) {
 
   const userName = useGetUserName();
   const [comments, setComments] = useState([]);
+
   function postComment(event) {
     event.preventDefault();
     console.log("comment posted");
@@ -48,6 +48,15 @@ function PostCard({ post }) {
       });
   }
 
+  function deletePost() {
+    fetch(`http://localhost:4000/delete/${post.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
   function likePost() {
     fetch(`http://localhost:4000/like/${post.id}`, {
       method: "POST",
@@ -61,15 +70,12 @@ function PostCard({ post }) {
     });
   }
 
-  
   function editButton() {
     return (
       <div>
         <form onSubmit={editPost}>
           <input type="text" visibility="hidden" />
-          <button  type="submit">
-            Edit Description
-          </button>
+          <button type="submit">Edit Description</button>
         </form>
       </div>
     );
@@ -99,31 +105,34 @@ function PostCard({ post }) {
       });
   }
 
+  function deleteButton() {
+    return (
+      <div>
+        <button onClick={deletePost}>Delete Post</button>
+      </div>
+    );
+  }
+
   console.log(comments);
 
   console.log(post);
   return (
     <div className="postcard">
+      {userId === post.userId ? deleteButton() : null}
       <img src={post.picture} alt="" />
       <p>{post.description}</p>
       <form onSubmit={postComment}>
-        <input type="text" required="true"/>
-
+        <input type="text" required="true" />
         <button type="submit">Comment</button>
       </form>
-        {userId === post.userId 
-        ? (
+      {userId === post.userId ? (
         <div>
-        <form onSubmit={editPost}>
-          <input type="text" required="true" />
-          <button  type="submit">
-            Edit Description
-          </button>
-        </form>
-      </div>
-      ) 
-      : null
-      }
+          <form onSubmit={editPost}>
+            <input type="text" required="true" />
+            <button type="submit">Edit Description</button>
+          </form>
+        </div>
+      ) : null}
       <button onClick={likePost} className="likebtn">
         Like
       </button>
