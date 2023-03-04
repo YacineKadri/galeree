@@ -23,7 +23,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ClerkProvider publishableKey={clerkPublicApi}>
           <SignedIn>
-            <Hello />
+            {/* <Hello /> */}
             <PostForm />
             <ProfilePage />
           </SignedIn>
