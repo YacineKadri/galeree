@@ -7,6 +7,9 @@ const ADOBE_API_URL = 'https://image.adobe.io/pie/psdService/photoshopActions';
 
 app.use(cors("*"));
 app.use(Express.json());
+app.use(Express.urlencoded({
+  extended: true
+}))
 
 app.post('/api/adobe', async (req, res) => {
   try {
@@ -31,7 +34,3 @@ app.post('/api/adobe', async (req, res) => {
 
 app.use(router);
 app.listen(port, () => console.log(`Server is running on port ${port}`));
-
-
-
-

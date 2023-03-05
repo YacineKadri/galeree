@@ -1,5 +1,5 @@
 import "./App.css";
-import Discover from "./Components/Discov/Discover.tsx";
+import Discover from "./Components/Discov/Discover";
 import {
   ClerkProvider,
   SignedIn,
@@ -12,8 +12,9 @@ import {
 } from "@clerk/clerk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import PostForm from "./Components/PostForm/PostForm";
-import NavBar from "./Components/NavBar/NavBar.tsx";
+import NavBar from "./Components/NavBar/NavBar";
 import ProfilePage from "./Components/ProfilePage/ProfilePage";
+import AvatarChat from "./Components/AvatarChat/AvatarChat.tsx";
 const clerkPublicApi =
   "pk_test_bG92aW5nLW1hbW1hbC03LmNsZXJrLmFjY291bnRzLmRldiQ";
 const queryClient = new QueryClient();
@@ -23,7 +24,8 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ClerkProvider publishableKey={clerkPublicApi}>
           <SignedIn>
-            {/* <Hello /> */}
+            <AvatarChat />
+            <Hello />
             <PostForm />
             <ProfilePage />
           </SignedIn>

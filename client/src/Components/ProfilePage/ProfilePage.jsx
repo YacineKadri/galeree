@@ -54,6 +54,7 @@ import PostCard from "../PostCard/PostCard.jsx";
 import "./ProfilePage.css";
 import { UserButton } from '@clerk/clerk-react';
 import Rodal from 'rodal';
+import ReadyPlayerMe from '../ReadyPlayerMe/ReadyPlayerMe.jsx';
 
 function ProfilePage() {
   const [mouseDownAt, setMouseDownAt] = useState(null);
@@ -64,7 +65,7 @@ function ProfilePage() {
   const { isLoading, error, data } = useQuery(["pics", userId], () =>
     fetchUserPics(userId)
   );
-
+console.log(data)
   function handleOnDown(e) {
     setMouseDownAt(e.clientX);
     console.log(e.clientX)
@@ -111,18 +112,19 @@ function ProfilePage() {
     setModalVisible(true);
   }
 
-  function handleModal(post) {
-    return (
-      <Rodal visible={isModalVisible} onClose={() => setModalVisible(false)}>
-        <PostCard key={post.id} post={post} />
-      </Rodal>
-    );
-  }
+  // function handleModal(post) {
+  //   return (
+  //     <Rodal visible={isModalVisible} onClose={() => setModalVisible(false)}>
+  //       <PostCard key={post.id} post={post} />
+  //     </Rodal> 
+  //   );
+  // }
 
   return (
    
 
-    
+    <> 
+     <ReadyPlayerMe />
     <div
       className="image-track"
       onMouseDown={handleOnDown}
@@ -135,9 +137,13 @@ function ProfilePage() {
       data-percentage={percentage}
     >
       {data.map((img) => (
-        <img className="image" src={img.picture} key={img.id} onClick={() => handleModal} />
+        <img className="image" src={img.picture} key={img.id}  />
       ))}
     </div>
+   
+    </>
+
+    
     
   );
 }

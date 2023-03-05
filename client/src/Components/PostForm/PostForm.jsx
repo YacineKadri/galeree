@@ -15,7 +15,7 @@ function PostForm(props) {
     console.log("submit");
     fetch("http://localhost:4000/create", {
       method: "POST",
-      // headers: { "Content-Type": "multipart/form-data" },
+      //headers: { "Content-Type": "multipart/form-data" },
       body: formData, 
     })
       .then((res) => {
@@ -24,7 +24,7 @@ function PostForm(props) {
       })
       .then((data) => {
         console.log(data);
-      });
+      }).catch((e) => console.log(e));
   };
 
   return (
