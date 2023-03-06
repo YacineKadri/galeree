@@ -3,8 +3,21 @@ import "./PostCard.css";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import CommentSection from "../CommentSection/CommentSection";
 import { useState, useEffect } from "react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  IconButton,
+} from "@chakra-ui/react";
+import { EditIcon, DeleteIcon, StarIcon } from "@chakra-ui/icons";
 
-function PostCard({ post }) {
+function PostCard({ post, details, setImage }) {
   const { userId } = useAuth();
   function useGetUserName() {
     const { isSignedIn, user } = useUser();
@@ -116,33 +129,44 @@ function PostCard({ post }) {
   console.log(comments);
 
   console.log(post);
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
-    <div className="postcard">
-      {userId === post.userId ? deleteButton() : null}
-      <img src={post.picture} alt="" />
-      <p>{post.description}</p>
-      <form onSubmit={postComment}>
-        <input type="text" required={true} />
-        <button type="submit">Comment</button>
-      </form>
-      {userId === post.userId ? (
-        <div>
-          <form onSubmit={editPost}>
-            <input type="text" required={true} />
-            <button type="submit">Edit Description</button>
-          </form>
-        </div>
-      ) : null}
-      <button onClick={likePost} className="likebtn">
-        Like
-      </button>
-      <CommentSection comments={comments} />
-    </div>
+    <>
+    {/* <Button onClick={onOpen}>Open Modal</Button> */}
+      <Modal isOpen={details} onClose={() => setImage(false)} size="lg">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{post.author}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <div className="postcard">
+              {userId === post.userId ? deleteButton() : null}
+              <img src={post.picture} alt="" />
+              <p>{post.description}</p>
+              <p>{post.author}</p>
+              <form onSubmit={postComment}>
+                <input type="text" required={true} />
+                <Button type="submit">Comment</Button>
+              </form>
+              {userId === post.userId ? (
+                <div>
+                  <form onSubmit={editPost}>
+                    <input type="text" required={true} />
+                    <IconButton type="submit" icon={<EditIcon/>}/>
+                  </form>
+                </div>
+              ) : null}
+              <IconButton onClick={likePost} className="likebtn" icon={<StarIcon/>}/>
+                
+              
+              <CommentSection comments={comments} />
+            </div>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
   );
 }
-
-
-
 
 export default PostCard;
 

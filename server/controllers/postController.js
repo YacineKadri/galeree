@@ -13,6 +13,7 @@ postController.postPosts = async (req, res) => {
   const {
     description,
     userId,
+    author
   } = req.body;
   console.log(req.body)
  const file = req.files.picture[0];
@@ -31,6 +32,7 @@ postController.postPosts = async (req, res) => {
        description: description,
        picture: imageUrl,
        userId: userId,
+       author: author,
      },
    });
 
@@ -156,7 +158,7 @@ postController.postLikes = async (req, res) => {
 
     const existingLike = await prisma.like.findUnique({
       where: {
-        userId_postId: {
+        id: {
           userId,
           postId,
         },

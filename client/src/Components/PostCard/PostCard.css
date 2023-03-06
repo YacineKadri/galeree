@@ -11,6 +11,11 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-    color: aliceblue;
+    color: #333;
+}
+
+.postcard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26), 0 0 0 1px #ccc;
 }
 

@@ -17,6 +17,7 @@ model ImagePost {
   createdAt DateTime @default(now())
   comments  Comment[]
   likes     Like[]
+  author  String
 }
 
 model Comment {

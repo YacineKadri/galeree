@@ -15,6 +15,8 @@ import PostForm from "./Components/PostForm/PostForm";
 import NavBar from "./Components/NavBar/NavBar";
 import ProfilePage from "./Components/ProfilePage/ProfilePage";
 import AvatarChat from "./Components/AvatarChat/AvatarChat.tsx";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import { ParallaxProvider } from "react-scroll-parallax";
 const clerkPublicApi =
   "pk_test_bG92aW5nLW1hbW1hbC03LmNsZXJrLmFjY291bnRzLmRldiQ";
 const queryClient = new QueryClient();
@@ -22,10 +24,12 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
+        <ParallaxProvider>
         <ClerkProvider publishableKey={clerkPublicApi}>
+          <Dashboard>
           <SignedIn>
             <AvatarChat />
-            <Hello />
+            {/* <Hello /> */}
             <PostForm />
             <ProfilePage />
           </SignedIn>
@@ -35,7 +39,9 @@ function App() {
             </NavBar>
             <Discover />
           </SignedOut>
+          </Dashboard>
         </ClerkProvider>
+        </ParallaxProvider>
       </QueryClientProvider>
     </>
   );
