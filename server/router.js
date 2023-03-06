@@ -45,6 +45,7 @@ router.get("/comments/:postId", postController.getComments)
 router.post("/like/:postId", postController.postLikes)
 router.put("/edit/:postId", postController.editPost)
 router.delete("/delete/:postId", postController.deletePost)
+router.get('/galeree-posts/:userName', postController.getUserGaleree)
 
 module.exports = router;
 

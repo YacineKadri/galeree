@@ -17,6 +17,8 @@ import ProfilePage from "./Components/ProfilePage/ProfilePage";
 import AvatarChat from "./Components/AvatarChat/AvatarChat.tsx";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import { ParallaxProvider } from "react-scroll-parallax";
+import { Routes, Route } from "react-router-dom";
+import UserGaleree from "./Components/UserGaleree/UserGaleree";
 const clerkPublicApi =
   "pk_test_bG92aW5nLW1hbW1hbC03LmNsZXJrLmFjY291bnRzLmRldiQ";
 const queryClient = new QueryClient();
@@ -40,8 +42,12 @@ function App() {
             <Discover />
           </SignedOut>
           </Dashboard>
+          <Routes>
+          <Route path="/galeree/:author" element={<UserGaleree/>} />
+        </Routes>
         </ClerkProvider>
         </ParallaxProvider>
+      
       </QueryClientProvider>
     </>
   );

@@ -85,6 +85,26 @@ postController.getUserPosts = async (req, res) => {
   }
 };
 
+postController.getUserGaleree = async (req, res) => {
+  try {
+    const author = req.params.author;
+    const posts = await prisma.imagePost.findMany({
+      where: {
+        author: author,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    res.status(200).json(posts);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Posts not found"
+    });
+  }
+};
+
 postController.postComments = async (req, res) => {
   const {
     message,
