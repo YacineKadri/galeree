@@ -18,6 +18,9 @@ import {
 import { EditIcon, DeleteIcon, StarIcon } from "@chakra-ui/icons";
 
 function PostCard({ post, details, setImage }) {
+  const [isLiked, setIsLiked] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const { userId } = useAuth();
   function useGetUserName() {
     const { isSignedIn, user } = useUser();
@@ -81,6 +84,11 @@ function PostCard({ post, details, setImage }) {
         postId: post.id,
       }),
     });
+    if (!isLiked) {
+      setIsLiked(true);
+    } else {
+      setIsLiked(false);
+    }
   }
 
   function editButton() {
@@ -96,7 +104,7 @@ function PostCard({ post, details, setImage }) {
 
   function editPost(event) {
   
-
+    setIsEditing(true);
     console.log(`http://localhost:4000/edit/${post.id}`);
     fetch(`http://localhost:4000/edit/${post.id}`, {
       method: "PUT",
@@ -116,15 +124,16 @@ function PostCard({ post, details, setImage }) {
         console.log(data);
         return data;
       });
+      setIsEditing(false);
   }
 
-  function deleteButton() {
-    return (
-      <div>
-        <button onClick={deletePost}>Delete Post</button>
-      </div>
-    );
-  }
+  // function deleteButton() {
+  //   return (
+  //     <div>
+  //       <button onClick={deletePost}>Delete Post</button>
+  //     </div>
+  //   );
+  // }
 
   console.log(comments);
 
@@ -136,14 +145,13 @@ function PostCard({ post, details, setImage }) {
       <Modal isOpen={details} onClose={() => setImage(false)} size="lg">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{post.author}</ModalHeader>
+          <ModalHeader>Artwork by {post.author}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <div className="postcard">
-              {userId === post.userId ? deleteButton() : null}
+              {userId === post.userId ? <IconButton onClick={() => { deletePost()}}  icon={<DeleteIcon/>}/> : null}
               <img src={post.picture} alt="" />
-              <p>{post.description}</p>
-              <h3>{post.author}</h3>
+              <h4>{post.description}</h4>
               <form onSubmit={postComment}>
                 <input className='comment-input'type="text" required={true} />
                 <Button type="submit">Comment</Button>
@@ -156,7 +164,7 @@ function PostCard({ post, details, setImage }) {
                   </form>
                 </div>
               ) : null}
-              <IconButton onClick={likePost} className="likebtn" icon={<StarIcon/>}/>
+              <IconButton onClick={likePost} className="likebtn" icon={<StarIcon color={isLiked ? 'yellow.400' : 'gray.400'}/>} />
                 
               
               <CommentSection comments={comments} />

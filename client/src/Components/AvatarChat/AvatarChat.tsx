@@ -46,7 +46,7 @@ export default function AvatarChat() {
 
   return (
     <div>
-        <Exhibit modelSrc='https://readyplayerme.github.io/visage/male.glb' />
+        <Exhibit modelSrc='https://readyplayerme.github.io/visage/male.glb'  />
         <button onClick={sayHello}>Hello</button>
     </div>
   )

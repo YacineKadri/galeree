@@ -1,6 +1,7 @@
 const Express = require("express");
 const router = Express.Router();
 const postController = require("./controllers/postController");
+const userController = require("./controllers/userController");
 
 const multer = require("multer");
 // const multerGoogleStorage = require("multer-cloud-storage");
@@ -46,6 +47,7 @@ router.post("/like/:postId", postController.postLikes)
 router.put("/edit/:postId", postController.editPost)
 router.delete("/delete/:postId", postController.deletePost)
 router.get('/galeree-posts/:author', postController.getUserGaleree)
+router.get('/users', userController.getUsers)
 
 module.exports = router;
 

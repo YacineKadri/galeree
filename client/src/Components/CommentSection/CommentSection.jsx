@@ -6,7 +6,7 @@ const CommentSection = ({ comments }) => {
     console.log(comments)
   return (
     <div>
-      {comments && comments.length && comments.map((comment) => {
+      {comments && comments.length >= 1 && comments.map((comment) => {
         console.log(comment);
         return (<div className="comment">
           <p>{comment.message}</p>

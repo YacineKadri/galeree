@@ -9,7 +9,6 @@
   border-top: 1px solid #e9ecef;
   height: 50px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -17,5 +16,27 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: #333;
-  /* margin-left: 1rem; */
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
+
+.search {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 100rem;
+}
+
+.users{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 1rem;
 }

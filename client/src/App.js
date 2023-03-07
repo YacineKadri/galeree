@@ -28,7 +28,6 @@ function App() {
   const location = useLocation();
   return (
     <>
-   
       <QueryClientProvider client={queryClient}>
         <ParallaxProvider>
           <ClerkProvider publishableKey={clerkPublicApi}>
@@ -40,13 +39,19 @@ function App() {
                 <ProfilePage />
               </SignedIn>
               <SignedOut>
-                <NavBar/>
+                <NavBar />
 
-                {/* {location === "/galeree/:author" ? <UserGaleree/> : null} */}
+                {location.pathname === "/galeree/:author" ? (
+                  <>
+                    <NavBar />
+                    <UserGaleree />
+                  </>
+                ) : (
+                  <NavBar />
+                )}
                 {/* <Discover /> */}
               </SignedOut>
             </Dashboard>
-         
           </ClerkProvider>
         </ParallaxProvider>
       </QueryClientProvider>
