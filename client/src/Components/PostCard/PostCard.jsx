@@ -31,7 +31,7 @@ function PostCard({ post, details, setImage }) {
   const [comments, setComments] = useState([]);
 
   function postComment(event) {
-    event.preventDefault();
+  
     console.log("comment posted");
     fetch(`http://localhost:4000/comments/${userId}`, {
       method: "POST",
@@ -95,7 +95,7 @@ function PostCard({ post, details, setImage }) {
   }
 
   function editPost(event) {
-    event.preventDefault();
+  
 
     console.log(`http://localhost:4000/edit/${post.id}`);
     fetch(`http://localhost:4000/edit/${post.id}`, {
@@ -143,9 +143,9 @@ function PostCard({ post, details, setImage }) {
               {userId === post.userId ? deleteButton() : null}
               <img src={post.picture} alt="" />
               <p>{post.description}</p>
-              <p>{post.author}</p>
+              <h3>{post.author}</h3>
               <form onSubmit={postComment}>
-                <input type="text" required={true} />
+                <input className='comment-input'type="text" required={true} />
                 <Button type="submit">Comment</Button>
               </form>
               {userId === post.userId ? (

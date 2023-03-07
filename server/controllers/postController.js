@@ -96,6 +96,7 @@ postController.getUserGaleree = async (req, res) => {
         createdAt: "desc",
       },
     });
+    console.log(posts)
     res.status(200).json(posts);
   } catch (error) {
     console.log(error);
@@ -176,12 +177,10 @@ postController.postLikes = async (req, res) => {
       return res.status(401).json({ message: "User not authenticated" });
     }
 
-    const existingLike = await prisma.like.findUnique({
+    const existingLike = await prisma.like.findFirst({
       where: {
-        id: {
-          userId,
-          postId,
-        },
+       userId: userId,
+        postId: postId,
       },
     });
 
@@ -192,7 +191,7 @@ postController.postLikes = async (req, res) => {
           id: existingLike.id,
         },
       });
-      console.log(deletedLike);
+      console.log(deletedLike, 'deleted like');
       return res.status(200).json(deletedLike);
     } else {
       // User has not liked the post, so create a new like

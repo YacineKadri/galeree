@@ -32,8 +32,12 @@ const UserGaleree = () => {
         }).then((res) => res.json());
       }
 
-
+        if (error || !data) return <div>Something went wrong...</div>;
     return (
+        < div className="user-galeree">
+       
+            <h1>{author}'s Galeree</h1>
+            
         <div
         className="image-track"
         // onMouseDown={handleOnDown}
@@ -50,7 +54,8 @@ const UserGaleree = () => {
           <img className="image" src={img.picture} key={img.id} onClick={() => handleModal(img)}  />
         ))}
       
-      {data && <PostCard post={image} details={details} setImage={setImage} />}
+      {image && <PostCard post={image} details={details} setImage={setImage} />}
+      </div>
       </div>
     );
 }

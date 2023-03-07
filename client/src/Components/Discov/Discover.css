@@ -6,33 +6,28 @@ body {
 }
 
 .title {
-    font-size: 2rem;
-    font-weight: 500;
-    color: #333;
-    font-family: Arial, Helvetica, sans-serif
+  font-size: 2rem;
+  font-weight: 500;
+  color: #333;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .discover-feed {
-  justify-content: center;
-  display: flex;
-  gap: 4vmin;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  user-select: none;
-  overflow-x: scroll;
-  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 17px;
 }
 
 .image {
-  width: 40vmin;
+  width: 50vmin;
   height: 56vmin;
   object-fit: cover;
   object-position: 100% center;
 }
 
-.image:hover {
+/* .image:hover {
   cursor: pointer;
   
-}
+} */

@@ -17,37 +17,38 @@ import ProfilePage from "./Components/ProfilePage/ProfilePage";
 import AvatarChat from "./Components/AvatarChat/AvatarChat.tsx";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import { ParallaxProvider } from "react-scroll-parallax";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import UserGaleree from "./Components/UserGaleree/UserGaleree";
+import ParallaxEffect from "./Components/ParallaxEffect/ParallaxEffect";
+
 const clerkPublicApi =
   "pk_test_bG92aW5nLW1hbW1hbC03LmNsZXJrLmFjY291bnRzLmRldiQ";
 const queryClient = new QueryClient();
 function App() {
+  const location = useLocation();
   return (
     <>
+   
       <QueryClientProvider client={queryClient}>
         <ParallaxProvider>
-        <ClerkProvider publishableKey={clerkPublicApi}>
-          <Dashboard>
-          <SignedIn>
-            <AvatarChat />
-            {/* <Hello /> */}
-            <PostForm />
-            <ProfilePage />
-          </SignedIn>
-          <SignedOut>
-            <NavBar>
-              <SignInButton />
-            </NavBar>
-            <Discover />
-          </SignedOut>
-          </Dashboard>
-          <Routes>
-          <Route path="/galeree/:author" element={<UserGaleree/>} />
-        </Routes>
-        </ClerkProvider>
+          <ClerkProvider publishableKey={clerkPublicApi}>
+            <Dashboard>
+              <SignedIn>
+                <AvatarChat />
+                {/* <Hello /> */}
+                <PostForm />
+                <ProfilePage />
+              </SignedIn>
+              <SignedOut>
+                <NavBar/>
+
+                {/* {location === "/galeree/:author" ? <UserGaleree/> : null} */}
+                {/* <Discover /> */}
+              </SignedOut>
+            </Dashboard>
+         
+          </ClerkProvider>
         </ParallaxProvider>
-      
       </QueryClientProvider>
     </>
   );
