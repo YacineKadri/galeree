@@ -1,32 +1,60 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Dashboard from "./Components/Discov/Discover.tsx";
+import Discover from "./Components/Discov/Discover";
 import {
   ClerkProvider,
   SignedIn,
   SignedOut,
   RedirectToSignIn,
   UserButton,
-  useUser
+  useUser,
+  SignInButton,
+  useAuth,
 } from "@clerk/clerk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import PostForm from "./Components/PostForm/PostForm";
+import NavBar from "./Components/NavBar/NavBar";
+import ProfilePage from "./Components/ProfilePage/ProfilePage";
+import AvatarChat from "./Components/AvatarChat/AvatarChat.tsx";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import { ParallaxProvider } from "react-scroll-parallax";
+import { Routes, Route, useLocation } from "react-router-dom";
+import UserGaleree from "./Components/UserGaleree/UserGaleree";
+import ParallaxEffect from "./Components/ParallaxEffect/ParallaxEffect";
+
 const clerkPublicApi =
   "pk_test_bG92aW5nLW1hbW1hbC03LmNsZXJrLmFjY291bnRzLmRldiQ";
 const queryClient = new QueryClient();
 function App() {
+  const location = useLocation();
   return (
     <>
-      <ClerkProvider publishableKey={clerkPublicApi}>
-        <SignedIn>
-          <QueryClientProvider client={queryClient} contextSharing={true}>
-            <Dashboard />
-            <Hello />
-          </QueryClientProvider>
-        </SignedIn>
-        <SignedOut>
-          <RedirectToSignIn />
-        </SignedOut>
-      </ClerkProvider>
+      <QueryClientProvider client={queryClient}>
+        <ParallaxProvider>
+          <ClerkProvider publishableKey={clerkPublicApi}>
+            <Dashboard>
+              <SignedIn>
+                <AvatarChat />
+                {/* <Hello /> */}
+                <PostForm />
+                <ProfilePage />
+              </SignedIn>
+              <SignedOut>
+                <NavBar />
+
+                {location.pathname === "/galeree/:author" ? (
+                  <>
+                    <NavBar />
+                    <UserGaleree />
+                  </>
+                ) : (
+                  <NavBar />
+                )}
+                {/* <Discover /> */}
+              </SignedOut>
+            </Dashboard>
+          </ClerkProvider>
+        </ParallaxProvider>
+      </QueryClientProvider>
     </>
   );
 }

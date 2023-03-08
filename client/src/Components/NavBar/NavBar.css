@@ -1,0 +1,42 @@
+.container-fluid {
+  background-color: #f8f9fa;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 0 0 0;
+  border-bottom: 1px solid #e9ecef;
+  border-top: 1px solid #e9ecef;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.galeree {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
+
+.search {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 100rem;
+}
+
+.users{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 1rem;
+}
