@@ -1,5 +1,6 @@
 import React from 'react'
 import {Exhibit} from '@readyplayerme/visage'
+import './AvatarChat.css'
 
 
 export default function AvatarChat() {
@@ -45,9 +46,8 @@ export default function AvatarChat() {
  
 
   return (
-    <div>
-        <Exhibit modelSrc='https://readyplayerme.github.io/visage/male.glb'  />
-        <button onClick={sayHello}>Hello</button>
+    <div className='avatar-rendering'>
+        <Exhibit modelSrc='https://models.readyplayer.me/6404cebcce7f75d51cdd2d7a.glb'  />
     </div>
   )
 }

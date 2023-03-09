@@ -14,6 +14,7 @@ function NavBar() {
   const { userId } = useAuth();
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  console.log(users)
   
 
 useEffect(() => {
