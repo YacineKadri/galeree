@@ -7,6 +7,7 @@ import { UserButton } from "@clerk/clerk-react";
 import Rodal from "rodal";
 import ReadyPlayerMe from "../ReadyPlayerMe/ReadyPlayerMe.jsx";
 import PostForm from "../PostForm/PostForm.jsx";
+import AvatarChat from "../AvatarChat/AvatarChat.tsx";
 
 function ProfilePage() {
   const [mouseDownAt, setMouseDownAt] = useState(null);
@@ -113,6 +114,7 @@ function ProfilePage() {
       <div className="profile-header">
           <PostForm />
           <ReadyPlayerMe />
+
         </div>
       <div className="profile-page">
       
